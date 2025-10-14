@@ -44,7 +44,6 @@ class _CommonTextfieldState extends State<CommonTextfield> {
       ),
       child: TextFormField(
         controller: widget.controller,
-        //validator: widget.validator,
         textInputAction: widget.textInputAction,
         keyboardType: widget.textInputType,
         obscureText: widget.isPassword && _isObscured,

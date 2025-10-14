@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// A reusable widget for the circular overview cards on the home screen.
 class OverviewCard extends StatelessWidget {
   const OverviewCard({
     super.key,

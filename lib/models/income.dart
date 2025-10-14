@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-// Helper function to decode a JSON string into an IncomeModel object
 IncomeModel incomeModelFromJson(String str) =>
     IncomeModel.fromJson(json.decode(str));
 
-// Helper function to encode an IncomeModel object into a JSON string
 String incomeModelToJson(IncomeModel data) => json.encode(data.toJson());
 
 class IncomeModel {
@@ -22,7 +20,6 @@ class IncomeModel {
     this.description,
   });
 
-  // Factory constructor to create an instance from a JSON map
   factory IncomeModel.fromJson(Map<String, dynamic> json) => IncomeModel(
     id: json["id"],
     amount: (json["amount"] as num?)?.toDouble() ?? 0.0,
@@ -31,7 +28,6 @@ class IncomeModel {
     description: json["description"],
   );
 
-  // Method to convert the instance to a JSON map
   Map<String, dynamic> toJson() => {
     "id": id,
     "amount": amount,
@@ -40,7 +36,6 @@ class IncomeModel {
     "description": description,
   };
 
-  // Method to create a copy of the instance with some updated fields
   IncomeModel copyWith({
     String? id,
     double? amount,

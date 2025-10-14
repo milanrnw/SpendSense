@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-// Helper function to decode a JSON string into an ExpenseModel object
 ExpenseModel expenseModelFromJson(String str) =>
     ExpenseModel.fromJson(json.decode(str));
 
-// Helper function to encode an ExpenseModel object into a JSON string
 String expenseModelToJson(ExpenseModel data) => json.encode(data.toJson());
 
 class ExpenseModel {
@@ -22,7 +20,6 @@ class ExpenseModel {
     this.description,
   });
 
-  // Factory constructor to create an instance from a JSON map
   factory ExpenseModel.fromJson(Map<String, dynamic> json) => ExpenseModel(
     id: json["id"],
     // The '?? 0.0' provides a fallback if the amount is null
@@ -43,7 +40,6 @@ class ExpenseModel {
     "description": description,
   };
 
-  // Method to create a copy of the instance with some updated fields
   ExpenseModel copyWith({
     String? id,
     double? amount,

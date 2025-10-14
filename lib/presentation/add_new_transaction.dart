@@ -59,7 +59,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
 
   // NEW: Logic for the save button
   Future<void> _handleSaveTransaction() async {
-    // 1. Validate the form
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -134,7 +133,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        // NEW: Wrap the column in a Form widget
         child: Form(
           key: _formKey,
           child: Column(
@@ -143,7 +141,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
               _buildTypeSelector(),
               SizedBox(height: 30.h),
 
-              // NEW: Use TextFormField for amount validation
               TextFormField(
                 controller: _amountController,
                 keyboardType: const TextInputType.numberWithOptions(
@@ -188,8 +185,7 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
               Center(
                 child: CommonAuthButton(
                   buttonText: "SAVE TRANSACTION",
-                  onPressed:
-                      _handleSaveTransaction, // NEW: Call the save handler
+                  onPressed: _handleSaveTransaction,
                   backgroundColor: const Color(0xFF1B3253),
                 ),
               ),
@@ -212,7 +208,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       });
     }
 
-    // (UI code remains the same as yours)
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey.shade200,

@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         .get();
 
     if (docRef.exists) {
-      print("User document already exists. Skipping setup.");
+      print("User document already exists.");
       return;
     }
 
@@ -147,7 +147,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           userDetails: UserDetails(
             uid: user.uid,
             email: user.email ?? _emailController.text.trim(),
-            // You can add fields for first/last name here if you add them to the UI
           ),
         );
 

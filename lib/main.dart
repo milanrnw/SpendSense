@@ -17,9 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Using ScreenUtilInit for responsive UI design
     return ScreenUtilInit(
-      designSize: const Size(390, 844), // iPhone 12 Pro dimensions as a base
+      designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: 'Poppins', // Assuming you have a default font
+            fontFamily: 'Poppins',
           ),
           home: FirebaseAuth.instance.currentUser != null
               ? DashboardScreen()

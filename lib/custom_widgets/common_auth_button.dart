@@ -9,13 +9,13 @@ class CommonAuthButton extends StatelessWidget {
     required this.buttonText,
     required this.onPressed,
     required this.backgroundColor,
-    this.isLoading = false, // Add this line
+    this.isLoading = false,
   });
 
   final String buttonText;
   final VoidCallback onPressed;
   final Color backgroundColor;
-  final bool isLoading; // And this line
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CommonAuthButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.w),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2), // Corrected withOpacity
+            color: Colors.black.withValues(alpha: 0.2),
             offset: const Offset(2, 2),
             blurRadius: 4.0,
           ),
@@ -43,7 +43,6 @@ class CommonAuthButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.w),
             ),
           ),
-          // Show a progress indicator when loading, otherwise show the text
           child: isLoading
               ? const SizedBox(
                   height: 24,

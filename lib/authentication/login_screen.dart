@@ -352,7 +352,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 32.h),
                   CommonAuthButton(
                     buttonText: "Continue with Google",
-                    onPressed: () {},
+                    onPressed: _signInWithGoogle,
                     backgroundColor: Color(0xFF80C0E2),
                     isLoading: isLoading,
                   ),

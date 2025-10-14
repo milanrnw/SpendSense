@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-// Helper function to decode a JSON string into a ReportModel object
 ReportModel reportModelFromJson(String str) =>
     ReportModel.fromJson(json.decode(str));
 
-// Helper function to encode a ReportModel object into a JSON string
 String reportModelToJson(ReportModel data) => json.encode(data.toJson());
 
 class ReportModel {

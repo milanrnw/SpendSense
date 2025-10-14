@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-// Helper function to decode a JSON string into a BudgetModel object
 BudgetModel budgetModelFromJson(String str) =>
     BudgetModel.fromJson(json.decode(str));
 
-// Helper function to encode a BudgetModel object into a JSON string
 String budgetModelToJson(BudgetModel data) => json.encode(data.toJson());
 
 class BudgetModel {

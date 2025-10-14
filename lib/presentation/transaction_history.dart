@@ -101,7 +101,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // This is our custom GPay-style month header
+                  // This is custom month header
                   _buildMonthHeader(monthKey, monthlyTotal),
 
                   // This is the list of transactions for that month
@@ -114,7 +114,6 @@ class _TransactionHistoryState extends State<TransactionHistory> {
                     shrinkWrap: true,
                     itemCount: monthlyTransactions.length,
                     itemBuilder: (context, tIndex) {
-                      // We reuse the same TransactionListItem widget we already have!
                       return TransactionListItem(
                         transaction: monthlyTransactions[tIndex],
                       );
@@ -131,7 +130,6 @@ class _TransactionHistoryState extends State<TransactionHistory> {
     );
   }
 
-  // Helper widget for the GPay-style colored month header
   Widget _buildMonthHeader(String monthKey, double total) {
     final isProfit = total >= 0;
     return Padding(

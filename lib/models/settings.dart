@@ -1,17 +1,15 @@
 import 'dart:convert';
 
-// Helper function to decode a JSON string into a SettingsModel object
 SettingsModel settingsModelFromJson(String str) =>
     SettingsModel.fromJson(json.decode(str));
 
-// Helper function to encode a SettingsModel object into a JSON string
 String settingsModelToJson(SettingsModel data) => json.encode(data.toJson());
 
 class SettingsModel {
   final String id; // Typically the same as the user's ID
   final bool notificationsEnabled;
-  String? currency; // e.g., "USD", "INR", "EUR"
-  String? language; // e.g., "en", "es"
+  String? currency;
+  String? language;
 
   SettingsModel({
     required this.id,
