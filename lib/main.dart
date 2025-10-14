@@ -1,10 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:spendsense/authentication/login_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:spendsense/firebase_options.dart';
-import 'package:spendsense/presentation/dashboard_screen.dart';
+import 'package:spendsense/presentation/auth_wrapper.dart';
+import 'package:spendsense/providers/auth_provider.dart';
+import 'package:spendsense/services/firestore_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,17 +23,21 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'SpendSense',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: 'Poppins',
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => AuthProvider()),
+            Provider(create: (_) => FirestoreService()),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'SpendSense',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              fontFamily: 'Poppins',
+            ),
+            home: const AuthWrapper(),
           ),
-          home: FirebaseAuth.instance.currentUser != null
-              ? DashboardScreen()
-              : LoginScreen(),
         );
       },
     );
