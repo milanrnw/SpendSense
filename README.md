@@ -24,3 +24,18 @@ Framework: Flutter \
 Backend/Database: Firebase \
 Authentication: Firebase Auth \
 State Management: Provider
+
+# Getting Started
+To use this App, follow the instructions below:
+
+# Prerequisites
+Ensure you have Flutter installed on your machine. For more information on installing Flutter, refer to the official Flutter documentation.
+
+# Installation
+Clone the repo \
+https://github.com/milanrnw/SpendSense.git
+
+# Install dependences
+flutter pub get \
+Connect your device or start an emulator. \
+Run flutter run to launch the app.
