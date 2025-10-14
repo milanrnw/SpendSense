@@ -17,7 +17,7 @@ SpendSense is packed with features to make financial management simple and effec
 # Screenshots
 Here's a sneak peek at the clean and user-friendly interface of SpendSense.
 
-![alt text](screenshots.png)
+![alt text](assets/images/screenshots.png)
 
 # Tech Stack
 Framework: Flutter \
