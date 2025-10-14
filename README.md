@@ -12,4 +12,15 @@ SpendSense is packed with features to make financial management simple and effec
 • 🗂️ Smart Categorization: Organize transactions with default categories (Food, Travel, Bills, etc.) or create your own custom ones. \
 • 📈 Visual Reports & Analytics: Understand where your money goes with easy-to-read charts. Visualize expenses by category and compare income vs. expenses over time (weekly/monthly). \
 • 📜 Full Transaction History: View, and filter all your past transactions with ease. \
-• ⚙️ Personalization: Manage your profile, set preferences and customize your income/expense categories. \
+• ⚙️ Personalization: Manage your profile, set preferences and customize your income/expense categories.
+
+# Screenshots
+Here's a sneak peek at the clean and user-friendly interface of SpendSense.
+
+![alt text](screenshots.png)
+
+# Tech Stack
+Framework: Flutter \
+Backend/Database: Firebase \
+Authentication: Firebase Auth \
+State Management: Provider
