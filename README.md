@@ -33,7 +33,7 @@ Ensure you have Flutter installed on your machine. For more information on insta
 
 # Installation
 Clone the repo \
-https://github.com/milanrnw/SpendSense.git
-flutter pub get \
+https://github.com/milanrnw/SpendSense.git \
+Run flutter pub get \
 Connect your device or start an emulator. \
-Execute the command flutter run to launch the app.
+Run flutter run to launch the app.
