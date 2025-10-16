@@ -17,22 +17,19 @@ class AddNewTransaction extends StatefulWidget {
 }
 
 class _AddNewTransactionState extends State<AddNewTransaction> {
-  final _formKey = GlobalKey<FormState>(); // NEW: Form key for validation
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
-  CategoryModel?
-  _selectedCategory; // NEW: Store the whole category object, not just a String
+  CategoryModel? _selectedCategory;
   String _transactionType = 'expense';
 
-  // NEW: Instantiate the service and create a Future to hold the categories
   final FirestoreService _firestoreService = FirestoreService();
   late Future<List<CategoryModel>> _categoriesFuture;
 
   @override
   void initState() {
     super.initState();
-    // NEW: Fetch categories when the screen is first loaded
     _categoriesFuture = _firestoreService.getCategories();
   }
 
@@ -57,13 +54,11 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
     }
   }
 
-  // NEW: Logic for the save button
   Future<void> _handleSaveTransaction() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    // 2. Get the current user
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       Appconstant.showSnackBar(
@@ -74,7 +69,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       return;
     }
 
-    // 3. Parse the amount
     final double? amount = double.tryParse(_amountController.text);
     if (amount == null || amount <= 0) {
       Appconstant.showSnackBar(
@@ -85,7 +79,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       return;
     }
 
-    // 4. Create the TransactionModel object
     final newTransaction = TransactionModel(
       type: _transactionType,
       amount: amount,
@@ -96,7 +89,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       userId: user.uid,
     );
 
-    // 5. Save using the Firestore service
     try {
       await _firestoreService.addTransaction(newTransaction);
       Appconstant.showSnackBar(
@@ -104,7 +96,7 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
         message: "Transaction saved successfully!",
       );
       if (mounted) {
-        Navigator.pop(context); // Go back after saving
+        Navigator.pop(context);
       }
     } catch (e) {
       Appconstant.showSnackBar(
@@ -117,6 +109,12 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    final amountStyle = TextStyle(
+      fontSize: 48.sp,
+      fontWeight: FontWeight.bold,
+      color: Colors.black87,
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -141,31 +139,49 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
               _buildTypeSelector(),
               SizedBox(height: 30.h),
 
-              TextFormField(
-                controller: _amountController,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                ),
-                style: TextStyle(fontSize: 48.sp, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.attach_money, size: 40.sp),
-                  hintText: "0.00",
-                  border: InputBorder.none,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an amount';
-                  }
-                  if (double.tryParse(value) == null) {
-                    return 'Please enter a valid number';
-                  }
-                  return null;
-                },
+              // --- FINAL, ROBUST FIX FOR THE AMOUNT FIELD ---
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  // 1. The symbol is a simple Text widget, outside the TextFormField
+                  Text("₹", style: amountStyle),
+                  SizedBox(width: 8.w),
+                  // 2. The TextFormField is wrapped in Expanded to take the remaining space
+                  Expanded(
+                    child: TextFormField(
+                      controller: _amountController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      style: amountStyle, // Use the shared style
+                      decoration: InputDecoration(
+                        // No prefix properties needed anymore
+                        hintText: "0.00",
+                        hintStyle: amountStyle.copyWith(
+                          color: Colors.grey.shade300,
+                        ),
+                        border: InputBorder.none,
+                        // Remove extra padding to improve alignment
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter an amount';
+                        }
+                        if (double.tryParse(value) == null) {
+                          return 'Please enter a valid number';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
               ),
+              // ------------------------------------
               const Divider(),
               SizedBox(height: 30.h),
 
-              // NEW: Use FutureBuilder to build the dropdown
               _buildCategoryDropdown(),
               SizedBox(height: 20.h),
 
@@ -196,15 +212,12 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
     );
   }
 
-  // --- BUILDER WIDGETS ---
-
+  // ... The rest of your file (_buildTypeSelector, _buildCategoryDropdown, _buildDatePicker) remains exactly the same ...
   Widget _buildTypeSelector() {
-    // NEW: When the type changes, we should clear the selected category
-    // because income/expense categories are different.
     void onTypeChanged(String type) {
       setState(() {
         _transactionType = type;
-        _selectedCategory = null; // Reset category selection
+        _selectedCategory = null;
       });
     }
 
@@ -271,27 +284,21 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
     );
   }
 
-  // NEW: This widget now uses FutureBuilder to dynamically fetch and display categories.
   Widget _buildCategoryDropdown() {
     return FutureBuilder<List<CategoryModel>>(
       future: _categoriesFuture,
       builder: (context, snapshot) {
-        // State 1: Loading
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-        // State 2: Error
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }
-        // State 3: No data
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Text('No categories found.');
         }
 
-        // State 4: Success - data is available
         final categories = snapshot.data!;
-        // Filter categories based on the selected transaction type
         final filteredCategories = categories
             .where((cat) => cat.type == _transactionType)
             .toList();
@@ -310,7 +317,7 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
           ) {
             return DropdownMenuItem<CategoryModel>(
               value: category,
-              child: Text(category.name), // Display the category name
+              child: Text(category.name),
             );
           }).toList(),
           decoration: const InputDecoration(

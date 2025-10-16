@@ -7,10 +7,10 @@ This repository contains the complete source code for the SpendSense application
 SpendSense is packed with features to make financial management simple and effective:
 
 • 🔐 Secure Authentication: Sign up and log in securely with email/password or Google. \
-• 📊 Intuitive Dashboard: Get a quick overview of your monthly income, expenses, and current balance on a clean home screen. \
+• 📊 Intuitive Dashboard: Get a quick overview of your monthly income, expenses, current balance and recent transactions on a clean home screen. \
 • ⚡ Quick Transaction Entry: Add new income or expense transactions in just a few taps. \
 • 🗂️ Smart Categorization: Organize transactions with default categories (Food, Travel, Bills, etc.) or create your own custom ones. \
-• 📈 Visual Reports & Analytics: Understand where your money goes with easy-to-read charts. Visualize expenses by category and compare income vs. expenses over time (weekly/monthly). \
+• 📈 Visual Reports & Analytics: Understand where your money goes with easy-to-read charts. Visualize expenses by category and compare income vs. expenses over time (daily/weekly/monthly). \
 • 📜 Full Transaction History: View, and filter all your past transactions with ease. \
 • ⚙️ Personalization: Manage your profile, set preferences and customize your income/expense categories.
 
@@ -34,8 +34,6 @@ Ensure you have Flutter installed on your machine. For more information on insta
 # Installation
 Clone the repo \
 https://github.com/milanrnw/SpendSense.git
-
-# Install dependences
 flutter pub get \
 Connect your device or start an emulator. \
-Run flutter run to launch the app.
+Execute the command flutter run to launch the app.

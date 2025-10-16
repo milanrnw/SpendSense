@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
         .get();
 
     if (docRef.exists) {
-      print("User document already exists. Skipping setup.");
+      print("User document already exists.");
       return;
     }
 
@@ -357,7 +357,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     isLoading: isLoading,
                   ),
 
-                  SizedBox(height: 100.h),
+                  SizedBox(height: 56.h),
                   RichText(
                     text: TextSpan(
                       children: [
@@ -389,7 +389,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 10.h),
                 ],
               ),
             ),

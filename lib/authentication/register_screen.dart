@@ -139,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         final user = userCredentials.user;
         if (user == null) {
-          throw Exception("User creation failed.");
+          throw Exception("Failed to register");
         }
 
         // Create user details and store them in Firestore
@@ -176,7 +176,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         } else {
           Appconstant.showSnackBar(
             context,
-            message: e.message ?? "An error occurred",
+            message: "An error occurred",
             isSuccess: false,
           );
         }
@@ -274,7 +274,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     backgroundColor: const Color(0xFF1B3253),
                     isLoading: _isLoading,
                   ),
-                  SizedBox(height: 200.h),
+                  SizedBox(height: 156.h),
                   RichText(
                     text: TextSpan(
                       children: [
@@ -306,7 +306,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 10.h),
                 ],
               ),
             ),
