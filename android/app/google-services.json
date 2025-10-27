@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "540512471949",
-    "project_id": "spendsense-2ca09",
-    "storage_bucket": "spendsense-2ca09.firebasestorage.app"
+    "project_number": "698471842431",
+    "project_id": "spendsense-555",
+    "storage_bucket": "spendsense-555.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:540512471949:android:a3188d77df1f79eb8ccbc4",
+        "mobilesdk_app_id": "1:698471842431:android:48e18db73eaf9665e3f54a",
         "android_client_info": {
           "package_name": "com.example.spendsense"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "540512471949-jr5opqq1i41vl5srtlbfrbqgv7tb84lj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.spendsense",
-            "certificate_hash": "c9890bf9182dae9e65d3eacff3cfa243478557dc"
-          }
-        },
-        {
-          "client_id": "540512471949-j9sbksea21ta082dhhra57r34s3j9fi1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDbwCVVihlV9U0q1WfEdhVu6GttcY2IL2c"
+          "current_key": "AIzaSyCBtp1UuZg3zb5u7YjVfhkao3vAj13s6q4"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "540512471949-j9sbksea21ta082dhhra57r34s3j9fi1.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "540512471949-f6hqb5cqfnvfb0dri9gurgc9alhlhf8b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.spendsense"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
