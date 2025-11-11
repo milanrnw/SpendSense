@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spendsense/authentication/login_screen.dart';
 import 'package:spendsense/models/user_details.dart';
 import 'package:spendsense/presentation/category_management_screen.dart';
@@ -125,6 +126,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       children: [
                         TextButton(
                           onPressed: () async {
+                            await GoogleSignIn().signOut();
                             await FirebaseAuth.instance.signOut();
                             if (mounted) {
                               Navigator.pushAndRemoveUntil(
